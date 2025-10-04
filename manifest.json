@@ -1,0 +1,21 @@
+{
+  "name": "مرغ خیابونی",
+  "short_name": "street chicken",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#1d1f33",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./Checken_st192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./Checken_st512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

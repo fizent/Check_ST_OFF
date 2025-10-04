@@ -1,0 +1,12 @@
+{
+  "name": "Illegal Brake (Road Crosser)",
+  "short_name": "Illegal Brake (Road Crosser)",
+  "id": "com.example.roadcrosser",
+  "description": "",
+  "orientation": "portrait",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "black",
+  "categories": ["games", "entertainment"],
+  "icons": []
+}
