@@ -4,7 +4,6 @@ var gdjs;
   (function(r){
     class s {
       constructor(e,t,i){
-        this._linkElement=null;
         this._containerElement=null;
         this._backgroundElement=null;
         this._madeWithTextElement=null;
@@ -50,8 +49,8 @@ var gdjs;
         if(this._backgroundElement)
           this._backgroundElement.style.height=`${this._backgroundHeight}px`;
         this.updateMargin(e);
-        if(this._linkElement)
-          this.updateElementMargins(this._linkElement);
+        if(this._containerElement)
+          this.updateElementMargins(this._containerElement);
       }
 
       addWatermarkToGameContainer(e){
@@ -68,9 +67,8 @@ var gdjs;
         this._containerElement.appendChild(i);
         if(this._backgroundElement) e.appendChild(this._backgroundElement);
 
-        this._linkElement=this.createLinkElement();
-        this._linkElement.append(this._containerElement);
-        e.appendChild(this._linkElement);
+        this.updateElementMargins(this._containerElement);
+        e.appendChild(this._containerElement);
 
         this.setupAnimations();
       }
@@ -94,10 +92,9 @@ var gdjs;
       setupAnimations(){
         requestAnimationFrame(()=>{
           setTimeout(()=>{
-            if(this._containerElement && this._backgroundElement && this._linkElement){
+            if(this._containerElement && this._backgroundElement){
               this._containerElement.style.opacity="1";
               this._backgroundElement.style.opacity="1";
-              this._linkElement.style.pointerEvents="all";
             }
           }, this._fadeInDelayAfterGameLoaded*1000);
         });
@@ -118,15 +115,9 @@ var gdjs;
           case"top":e.style.top=`${this._margin}px`;e.style.left="50%";e.style.transform="translate(-50%, 0)";break;
           default:e.style.bottom=`${this._margin}px`;e.style.left="50%";e.style.transform="translate(-50%, 0)";break;
         }
-      }
-
-      createLinkElement(){
-        const e=document.createElement("a");
-        e.id="watermark-link";
-        e.href="https://gd.games"; // لینک پیش‌فرض (می‌تونی حذف یا تغییرش بدی)
-        e.target="_blank";
-        this.updateElementMargins(e);
-        return e;
+        e.style.position="absolute";
+        e.style.pointerEvents="none";
+        e.style.userSelect="none";
       }
 
       createDivContainer(){
@@ -145,15 +136,6 @@ var gdjs;
           width: 100%;
           transition-property: opacity;
           transition-duration: ${this._fadeDuration}s;
-        }
-
-        #watermark-link {
-          all: unset;
-          position: absolute;
-          cursor: pointer;
-          pointer-events: none;
-          user-select: none;
-          -webkit-user-select: none;
         }
 
         #watermark {
